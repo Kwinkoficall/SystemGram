@@ -9,7 +9,6 @@
 :root{
   --bg:#0e0f12; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.09);
   --txt:#f2f3f5; --sub:#8b8f98; --acc:#7c8cff; --acc2:#b07cff;
-  --common:#8b8f98; --rare:#4da3ff; --epic:#b07cff; --legend:#ffb04d;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);
@@ -22,30 +21,42 @@ header{padding:14px 16px 10px;display:flex;align-items:center;justify-content:sp
 header h1{margin:0;font-size:20px;font-weight:700;letter-spacing:.2px}
 .bal{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(18px);
   padding:7px 12px;border-radius:999px;font-weight:600;font-size:14px}
-main{flex:1;overflow-y:auto;padding:0 14px 90px}
+main{flex:1;overflow-y:auto;padding:0 14px 96px}
 .glass{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:18px}
 nav{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;width:calc(100% - 24px);max-width:536px;
-  display:flex;padding:6px;gap:4px;z-index:5}
-nav button{flex:1;background:none;border:0;color:var(--sub);padding:9px 0 7px;border-radius:14px;font-size:11px;cursor:pointer}
-nav button span{display:block;font-size:20px;margin-bottom:2px}
+  display:flex;padding:6px;gap:2px;z-index:5}
+nav button{flex:1;background:none;border:0;color:var(--sub);padding:9px 0 7px;border-radius:14px;font-size:10px;cursor:pointer}
+nav button span{display:block;font-size:19px;margin-bottom:2px}
 nav button.on{background:rgba(255,255,255,.09);color:var(--txt)}
 .row{display:flex;align-items:center;gap:12px;padding:12px;margin-bottom:8px;cursor:pointer}
 .ava{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-size:22px;background:linear-gradient(135deg,var(--acc),var(--acc2));flex:none}
 .row .t{font-weight:600}.row .s{font-size:13px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.gift{padding:14px 10px;text-align:center;position:relative}
-.gift .e{font-size:54px;line-height:1.1;margin:6px 0}
+.gift{padding:10px;text-align:center;position:relative;cursor:pointer}
 .gift .n{font-weight:600;font-size:14px}
-.gift .m{font-size:12px;color:var(--sub);margin:2px 0 8px}
+.gift .m{font-size:12px;color:var(--sub);margin:2px 0 8px;min-height:15px}
+.gift .art{aspect-ratio:auto;height:104px;margin-bottom:8px}
 .btn{background:linear-gradient(135deg,var(--acc),var(--acc2));border:0;color:#fff;font-weight:600;
-  padding:9px 14px;border-radius:12px;cursor:pointer;font-size:14px;width:100%}
+  padding:11px 14px;border-radius:12px;cursor:pointer;font-size:14px;width:100%}
 .btn.ghost{background:rgba(255,255,255,.08)}
 .btn:disabled{opacity:.4}
-.tag{position:absolute;top:8px;left:8px;font-size:10px;padding:3px 7px;border-radius:999px;background:rgba(0,0,0,.35);font-weight:700}
-.r-common{color:var(--common)}.r-rare{color:var(--rare)}.r-epic{color:var(--epic)}.r-legendary{color:var(--legend)}
-.nft{outline:1.5px solid var(--acc2)}
+.tag{position:absolute;top:14px;left:14px;z-index:2;font-size:10px;padding:3px 7px;border-radius:999px;background:rgba(0,0,0,.45);font-weight:700}
 h3{margin:14px 4px 8px;font-size:15px;color:var(--sub);font-weight:600}
+/* art */
+.art{position:relative;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;width:100%}
+.art.plain{background:radial-gradient(circle at 50% 40%,rgba(255,255,255,.11),rgba(255,255,255,.02) 70%)}
+.art .pat{position:absolute;inset:0;background-size:90px 90px}
+.art .em{position:relative;line-height:1;text-shadow:0 6px 18px rgba(0,0,0,.35)}
+.t-legendary{color:#ffb04d}.t-epic{color:#b07cff}.t-rare{color:#4da3ff}.t-uncommon{color:#4dd6a0}.t-common{color:#8b8f98}
+.chips{display:flex;gap:6px;margin:0 2px 10px;overflow-x:auto}
+.chip{background:var(--card);border:1px solid var(--line);color:var(--sub);padding:7px 12px;border-radius:999px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip.on{color:var(--txt);background:rgba(255,255,255,.13)}
+select,.inp{background:var(--card);border:1px solid var(--line);color:var(--txt);padding:10px 12px;border-radius:12px;font-size:14px;outline:none;width:100%}
+select option{background:#1d2026}
+.fr{display:flex;gap:8px;margin-bottom:10px}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:14px}
+.chk input{accent-color:var(--acc);margin-top:3px}
 /* chat */
 #chat{position:fixed;inset:0;z-index:10;background:var(--bg);display:none;flex-direction:column;max-width:560px;margin:0 auto}
 #chat.open{display:flex}
@@ -56,21 +67,25 @@ h3{margin:14px 4px 8px;font-size:15px;color:var(--sub);font-weight:600}
 .msg.me{align-self:flex-end;background:linear-gradient(135deg,var(--acc),var(--acc2))}
 .msg.him{align-self:flex-start;background:var(--card);border:1px solid var(--line)}
 .msg .tm{font-size:10px;opacity:.6;text-align:right;margin-top:2px}
-.gmsg{align-self:center;text-align:center;padding:14px 22px;margin:6px 0}
-.gmsg .e{font-size:64px}.gmsg .c{font-size:13px;color:var(--sub);margin-top:4px}
+.gmsg{align-self:center;text-align:center;padding:12px;margin:8px 0;width:210px;cursor:pointer}
+.gmsg .c{font-size:13px;color:var(--sub);margin:8px 0 2px}
+.gmsg .x{font-size:13px;margin-top:4px}
+.gmsg .art{height:110px;aspect-ratio:auto}
 .cbar{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
 .cbar input{flex:1;background:var(--card);border:1px solid var(--line);color:var(--txt);padding:11px 14px;border-radius:14px;font-size:15px;outline:none}
 .cbar button{background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:14px;width:46px;font-size:20px;cursor:pointer}
 /* sheet */
 #sheet{position:fixed;inset:0;z-index:20;display:none;background:rgba(0,0,0,.55);align-items:flex-end}
 #sheet.open{display:flex}
-#sheet .in{width:100%;max-width:560px;margin:0 auto;background:#16181d;border-radius:22px 22px 0 0;padding:16px;max-height:75vh;overflow-y:auto;border:1px solid var(--line)}
+#sheet .in{width:100%;max-width:560px;margin:0 auto;background:#16181d;border-radius:22px 22px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));max-height:88vh;overflow-y:auto;border:1px solid var(--line)}
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;padding:10px 16px;border-radius:14px;
-  background:#1d2026;border:1px solid var(--line);font-size:14px;opacity:0;pointer-events:none;transition:.25s}
+  background:#1d2026;border:1px solid var(--line);font-size:14px;opacity:0;pointer-events:none;transition:.25s;max-width:90%;text-align:center}
 .toast.on{opacity:1}
-.big{font-size:90px;text-align:center;margin:6px 0}
-.kv{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
-.kv span:first-child{color:var(--sub)}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.kv span:first-child{color:var(--sub);flex:none}.kv span:last-child{text-align:right}
+.ttl{text-align:center;font-size:18px;font-weight:700;margin-top:10px}
+.sub{text-align:center;color:var(--sub);font-size:13px;margin:4px 0 12px}
+.empty{text-align:center;color:var(--sub);margin-top:60px}
 </style>
 </head>
 <body>
@@ -78,18 +93,19 @@ h3{margin:14px 4px 8px;font-size:15px;color:var(--sub);font-weight:600}
   <header><h1 id="title">Чаты</h1><div class="bal" id="bal">⭐ 0</div></header>
   <main id="main"></main>
   <nav class="glass">
-    <button data-t="chats"><span>💬</span>Чаты</button>
-    <button data-t="shop"><span>🎁</span>Подарки</button>
-    <button data-t="coll"><span>🗂</span>Коллекция</button>
-    <button data-t="prof"><span>👤</span>Профиль</button>
+    <button data-act="tab" data-a="chats"><span>💬</span>Чаты</button>
+    <button data-act="tab" data-a="shop"><span>🎁</span>Подарки</button>
+    <button data-act="tab" data-a="market"><span>🏪</span>Маркет</button>
+    <button data-act="tab" data-a="coll"><span>🗂</span>Коллекция</button>
+    <button data-act="tab" data-a="prof"><span>👤</span>Профиль</button>
   </nav>
 </div>
 
 <div id="chat">
-  <div class="chead"><button class="back" id="cback">‹</button><div class="ava" id="cava"></div>
-    <div><div style="font-weight:600" id="cname"></div><div style="font-size:12px;color:var(--sub)">в сети</div></div></div>
+  <div class="chead"><button class="back" data-act="back">‹</button><div class="ava" id="cava"></div>
+    <div><div style="font-weight:600" id="cname"></div><div style="font-size:12px;color:var(--sub)" id="cstat">в сети</div></div></div>
   <div id="msgs"></div>
-  <div class="cbar"><button id="cgift">🎁</button><input id="cin" placeholder="Сообщение" autocomplete="off"><button id="csend">➤</button></div>
+  <div class="cbar"><button data-act="cgift">🎁</button><input id="cin" placeholder="Сообщение" autocomplete="off"><button data-act="csend">➤</button></div>
 </div>
 <div id="sheet"><div class="in" id="sin"></div></div>
 <div class="toast" id="toast"></div>
@@ -99,100 +115,276 @@ const tg = window.Telegram && Telegram.WebApp;
 if (tg) { tg.ready(); tg.expand(); try{ tg.setHeaderColor('#0e0f12'); tg.setBackgroundColor('#0e0f12'); }catch(e){} }
 const tgUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
 
-/* ---------- Каталог подарков ---------- */
+/* =====================================================================
+   НАСТРОЙКИ ПОДАРКОВ — меняйте числа здесь, чтобы совпадали с вашим Telegram
+   Источники и что из этого точно, а что приблизительно — см. ответ в чате.
+   ===================================================================== */
+const CFG = {
+  UPGRADE_STARS: 25,   // цена улучшения до уникального (у конкретного подарка можно задать поле up)
+  TRANSFER_STARS: 25,  // цена передачи уникального подарка
+  CONVERT_RATE: 0.8,   // доля Stars, которая возвращается при конвертации обычного подарка
+  CONVERT_DAYS: 7,     // сколько дней после получения можно конвертировать
+  SELLER_SHARE: 0.8,   // сколько получает продавец при продаже на маркете за Stars
+  START_BAL: 1000,
+  BUY_LIMIT: 1.5       // боты покупают лот, если цена не выше оценки × это число
+};
+// Обычные подарки: цены в Stars по ступеням Telegram 15 / 25 / 50 / 100
 const GIFTS = [
-  {id:'heart',  name:'Сердце',        e:'💖', price:25,   rar:'common',    supply:0},
-  {id:'bear',   name:'Мишка',         e:'🧸', price:60,   rar:'common',    supply:0},
-  {id:'rose',   name:'Роза',          e:'🌹', price:100,  rar:'rare',      supply:50000},
-  {id:'cake',   name:'Торт',          e:'🎂', price:150,  rar:'rare',      supply:30000},
-  {id:'rocket', name:'Ракета',        e:'🚀', price:400,  rar:'epic',      supply:10000},
-  {id:'crown',  name:'Корона',        e:'👑', price:1200, rar:'epic',      supply:3000},
-  {id:'diamond',name:'Бриллиант',     e:'💎', price:5000, rar:'legendary', supply:500},
-  {id:'dragon', name:'Дракон',        e:'🐉', price:15000,rar:'legendary', supply:100},
+  {id:'heart',  n:'Сердце',      e:'💝', price:15},
+  {id:'bear',   n:'Мишка',       e:'🧸', price:15},
+  {id:'rose',   n:'Роза',        e:'🌹', price:25},
+  {id:'box',    n:'Подарок',     e:'🎁', price:25},
+  {id:'cake',   n:'Торт',        e:'🎂', price:50},
+  {id:'bouquet',n:'Букет',       e:'💐', price:50},
+  {id:'rocket', n:'Ракета',      e:'🚀', price:50},
+  {id:'champ',  n:'Шампанское',  e:'🍾', price:50},
+  {id:'cup',    n:'Кубок',       e:'🏆', price:100},
+  {id:'ring',   n:'Кольцо',      e:'💍', price:100},
+  {id:'diamond',n:'Алмаз',       e:'💎', price:100},
+  {id:'lolli',  n:'Леденец',     e:'🍭', price:15, supply:500000, ltd:1},
+  {id:'flower', n:'Цветок',      e:'🌼', price:25, supply:100000, ltd:1},
 ];
-const MODELS = ['Классика','Неон','Золото','Лёд','Тень','Радуга'];
-const BGS = ['#2b2f4a','#3a2b4a','#2b4a3e','#4a3a2b','#2b3f4a','#4a2b36'];
+// Атрибуты уникального подарка: p — редкость в промилле (сумма в каждом списке = 1000)
+const MODELS = [
+  {n:'Классика', p:350, f:'none'},
+  {n:'Аврора',   p:250, f:'hue-rotate(160deg)'},
+  {n:'Кристалл', p:200, f:'hue-rotate(200deg) saturate(1.3)'},
+  {n:'Огонь',    p:120, f:'hue-rotate(-30deg) saturate(1.6)'},
+  {n:'Тень',     p:60,  f:'grayscale(1) brightness(.55)'},
+  {n:'Призрак',  p:20,  f:'grayscale(1) brightness(1.7)'},
+];
+const BDS = [
+  {n:'Оникс',    p:180, c1:'#16161b', c2:'#3b3b46'},
+  {n:'Графит',   p:160, c1:'#24272d', c2:'#5a606c'},
+  {n:'Сапфир',   p:140, c1:'#102a62', c2:'#3475e8'},
+  {n:'Изумруд',  p:120, c1:'#0c4332', c2:'#2cc088'},
+  {n:'Аметист',  p:100, c1:'#34175f', c2:'#8f52e6'},
+  {n:'Рубин',    p:90,  c1:'#521020', c2:'#e63a56'},
+  {n:'Янтарь',   p:80,  c1:'#51340a', c2:'#e6a838'},
+  {n:'Роза',     p:60,  c1:'#612647', c2:'#ff86b8'},
+  {n:'Лёд',      p:40,  c1:'#114a56', c2:'#86e6f5'},
+  {n:'Золото',   p:20,  c1:'#5f4a00', c2:'#ffd957'},
+  {n:'Космос',   p:10,  c1:'#0a0620', c2:'#6a3df0'},
+];
+const SYMS = [
+  {n:'Искра',  p:220, ch:'✦'}, {n:'Снег',  p:200, ch:'❄'}, {n:'Сердце',p:160, ch:'♥'}, {n:'Звезда',p:140, ch:'★'},
+  {n:'Клевер', p:100, ch:'☘'}, {n:'Луна',  p:80,  ch:'☾'}, {n:'Молния',p:60,  ch:'⚡'}, {n:'Цветок',p:40,  ch:'✿'},
+];
 const CONTACTS = [
+  {id:0,name:'Избранное',ava:'🔖',bot:[]},
   {id:1,name:'Алексей',ava:'😎',bot:['Привет!','Ого, круто 🔥','Давай позже','Класс','Согласен']},
   {id:2,name:'Марина',ava:'🌸',bot:['Привет ☺️','Спасибо!','Ахах','Расскажи ещё','Ты где?']},
   {id:3,name:'Команда',ava:'👥',bot:['Принято','Сделаем','Ок','Обсудим завтра','Супер']},
-  {id:4,name:'Giftgram',ava:'🎁',bot:['Добро пожаловать! Подарки можно отправлять прямо в чате.']},
+  {id:4,name:'Giftgram',ava:'🎁',bot:['Подарки можно отправлять прямо в чате, а полученные — улучшать до уникальных.']},
 ];
+const SELLERS = ['@dream','@max','@lola','@kai','@neo','@sky','@ivan'];
+
+/* ---------- Утилиты ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => Math.round(n).toLocaleString('ru-RU');
+const hm = t => new Date(t).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+const dt = t => new Date(t).toLocaleDateString('ru-RU');
+const gift = id => GIFTS.find(g => g.id === id);
+const upPrice = g => g.up || CFG.UPGRADE_STARS;
+const rnd = a => a[Math.random()*a.length|0];
+function toast(t){ const el=$('#toast'); el.textContent=t; el.classList.add('on'); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove('on'),2000); }
+function haptic(k='light'){ try{ tg.HapticFeedback.impactOccurred(k);}catch(e){} }
+function wpick(arr){ let r=Math.random()*1000, a=0; for(const x of arr){ a+=x.p; if(r<a) return x; } return arr[arr.length-1]; }
+function tier(p){ return p<=20?'legendary':p<=60?'epic':p<=120?'rare':p<=200?'uncommon':'common'; }
+const pc = p => (p/10).toFixed(1).replace('.0','') + '%';
+function est(it){ const g=gift(it.gid), f=p=>Math.sqrt(150/p);
+  return Math.max(g.price, Math.round(g.price*2*f(it.model.p)*f(it.bd.p)*f(it.sym.p))); }
+function rarest(it){ return [it.model,it.bd,it.sym].reduce((a,b)=>a.p<=b.p?a:b); }
+function nameOf(f){ if(!f) return 'Неизвестно'; if(f.hide) return 'Скрытый отправитель'; const c=CONTACTS.find(c=>c.id===f.id); return f.id===0?'Вы':(c?c.name:'Неизвестно'); }
 
 /* ---------- Состояние ---------- */
-const KEY = 'giftgram_v1';
-let S = JSON.parse(localStorage.getItem(KEY) || 'null') || {
-  bal: 2000, nextId: 1, owned: [], chats: {}, sold: {}
-};
-const save = () => localStorage.setItem(KEY, JSON.stringify(S));
-const $ = s => document.querySelector(s);
-const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt = n => n.toLocaleString('ru-RU');
-const hm = t => new Date(t).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
-const gift = id => GIFTS.find(g => g.id === id);
-const RAR = {common:'Обычный',rare:'Редкий',epic:'Эпический',legendary:'Легендарный'};
-
-function toast(t){ const el=$('#toast'); el.textContent=t; el.classList.add('on'); setTimeout(()=>el.classList.remove('on'),1800); }
-function haptic(k='light'){ try{ tg.HapticFeedback.impactOccurred(k);}catch(e){} }
-
-/* ---------- Покупка / отправка ---------- */
-function mintGift(g){
-  const sold = S.sold[g.id] = (S.sold[g.id]||0) + 1;
-  const num = g.supply ? Math.min(sold, g.supply) : sold;
-  return { uid:S.nextId++, gid:g.id, num, model:MODELS[Math.random()*MODELS.length|0],
-           bg:BGS[Math.random()*BGS.length|0], nft:false, t:Date.now() };
+const KEY = 'giftgram_v2';
+function fresh(){
+  const w = {upg:{}, sold:{}};
+  GIFTS.forEach(g => {
+    w.upg[g.id] = Math.round(2000 + Math.random()*30000);
+    if (g.ltd){ w.sold[g.id] = Math.round(g.supply*(.35+Math.random()*.4)); w.upg[g.id] = Math.min(w.upg[g.id], w.sold[g.id]); }
+  });
+  return {bal:CFG.START_BAL, nextId:1, owned:[], chats:{}, world:w, market:[], welcome:false};
 }
-function buy(gid){
-  const g = gift(gid);
-  if (S.bal < g.price) { toast('Не хватает ⭐'); return null; }
-  S.bal -= g.price;
-  const item = mintGift(g); S.owned.push(item); save(); renderBal(); haptic('medium');
-  return item;
+let S; try{ S = JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ S=null; }
+if (!S) S = fresh();
+const save = () => { try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} };
+
+/* ---------- Подарки: логика ---------- */
+function addOwned(it){ it.uid = S.nextId++; S.owned.push(it); return it; }
+function addMsg(cid, m){ (S.chats[cid] = S.chats[cid] || []).push(Object.assign({t:Date.now()}, m)); }
+function newReg(gid, from, text, prepaid){ return addOwned({kind:'reg', gid, t:Date.now(), from, text:text||'', prepaid:!!prepaid}); }
+
+function sendGift(cid, gid, o){
+  const g = gift(gid), cost = g.price + (o.up ? upPrice(g) : 0);
+  if (g.ltd && S.world.sold[gid] >= g.supply){ toast('Подарок распродан'); return false; }
+  if (S.bal < cost){ toast('Не хватает ⭐'); return false; }
+  S.bal -= cost; if (g.ltd) S.world.sold[gid]++;
+  const text = (o.text||'').slice(0,128);
+  if (cid === 0){
+    const it = newReg(gid, {id:0}, text, o.up);
+    addMsg(0, {gift:{dir:'self', uid:it.uid, gid, price:g.price, up:o.up, text}});
+  } else {
+    addMsg(cid, {me:true, gift:{dir:'out', gid, price:g.price, up:o.up, text}});
+    const c = CONTACTS.find(c => c.id === cid);
+    setTimeout(() => {
+      addMsg(cid, {text:'Спасибо за подарок! 😍'});
+      if (Math.random() < .45){
+        const back = gift(rnd(['heart','bear','rose','box','lolli']));
+        if (!(back.ltd && S.world.sold[back.id] >= back.supply)){
+          if (back.ltd) S.world.sold[back.id]++;
+          const it = newReg(back.id, {id:cid}, 'Держи в ответ!', false);
+          addMsg(cid, {gift:{dir:'in', uid:it.uid, gid:back.id, price:back.price, text:'Держи в ответ!'}});
+          toast(c.name + ' отправил(а) вам подарок');
+        }
+      }
+      save(); if (curChat && curChat.id === cid) drawMsgs(); render();
+    }, 1200);
+  }
+  save(); haptic('heavy'); return true;
 }
-function addMsg(cid, m){ (S.chats[cid] = S.chats[cid] || []).push(Object.assign({t:Date.now()}, m)); save(); }
+
+function doUpgrade(uid, keep){
+  const it = S.owned.find(o => o.uid == uid); if (!it || it.kind !== 'reg') return null;
+  const g = gift(it.gid), cost = it.prepaid ? 0 : upPrice(g);
+  if (S.bal < cost){ toast('Не хватает ⭐'); return null; }
+  S.bal -= cost; S.world.upg[g.id]++;
+  Object.assign(it, {kind:'uniq', num:S.world.upg[g.id], model:wpick(MODELS), bd:wpick(BDS), sym:wpick(SYMS),
+    orig: keep ? {from:it.from, t:it.t, text:it.text} : null});
+  delete it.prepaid; save(); return it;
+}
+function convertGift(uid){
+  const it = S.owned.find(o => o.uid == uid); if (!it || it.kind !== 'reg') return;
+  if (Date.now() - it.t > CFG.CONVERT_DAYS*864e5){ toast('Срок конвертации истёк'); return; }
+  const amt = Math.floor(gift(it.gid).price * CFG.CONVERT_RATE);
+  S.bal += amt; S.owned = S.owned.filter(o => o !== it); save(); closeSheet(); toast('Конвертировано в ⭐' + amt); render();
+}
+
+/* ---------- Маркет ---------- */
+function newListing(){
+  const gid = rnd(GIFTS).id;
+  const it = {kind:'uniq', gid, num:1+(Math.random()*S.world.upg[gid]|0), model:wpick(MODELS), bd:wpick(BDS), sym:wpick(SYMS)};
+  return {lid:'b'+(S.nextId++), it, price:Math.max(1,Math.round(est(it)*(.8+Math.random()*.7))), seller:rnd(SELLERS)};
+}
+if (!S.market.length){ for (let i=0;i<24;i++) S.market.push(newListing()); }
+function allListings(){
+  const mine = S.owned.filter(o => o.sale).map(o => ({lid:'o'+o.uid, it:o, price:o.sale.price, seller:'Вы', mine:true}));
+  return mine.concat(S.market);
+}
+function tickMarket(){
+  let changed = false;
+  S.owned.slice().forEach(o => {
+    if (o.sale && Date.now() - o.sale.t >= o.sale.delay && o.sale.price <= est(o)*CFG.BUY_LIMIT){
+      const get = Math.floor(o.sale.price*CFG.SELLER_SHARE);
+      S.bal += get; S.owned = S.owned.filter(x => x !== o); changed = true;
+      toast(gift(o.gid).n + ' #' + o.num + ' продан за ⭐' + fmt(o.sale.price) + ' (вам ⭐' + fmt(get) + ')');
+    }
+  });
+  if (changed){ save(); render(); }
+}
+setInterval(tickMarket, 2000);
+
+/* ---------- Визуал подарка ---------- */
+function art(it, size){
+  const g = gift(it.gid);
+  if (it.kind === 'uniq'){
+    const tile = encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'>"
+      + "<text x='8' y='26' font-size='20' fill='white' fill-opacity='.22'>"+it.sym.ch+"</text>"
+      + "<text x='54' y='56' font-size='16' fill='white' fill-opacity='.15'>"+it.sym.ch+"</text>"
+      + "<text x='18' y='82' font-size='14' fill='white' fill-opacity='.1'>"+it.sym.ch+"</text></svg>").replace(/'/g,'%27');
+    return `<div class="art" style="background:radial-gradient(circle at 50% 38%,${it.bd.c2},${it.bd.c1} 78%)">
+      <div class="pat" style="background-image:url('data:image/svg+xml;utf8,${tile}')"></div>
+      <div class="em" style="font-size:${size}px;filter:${it.model.f}">${g.e}</div></div>`;
+  }
+  return `<div class="art plain"><div class="em" style="font-size:${size}px">${g.e}</div></div>`;
+}
+function attrRow(label, a, extra){
+  return `<div class="kv"><span>${label}</span><span class="t-${tier(a.p)}">${a.n}${extra||''} · ${pc(a.p)}</span></div>`;
+}
+function details(it){
+  const g = gift(it.gid);
+  if (it.kind === 'uniq'){
+    let h = attrRow('Модель',it.model) + attrRow('Фон',it.bd) + attrRow('Символ',it.sym,' '+it.sym.ch)
+      + `<div class="kv"><span>Номер</span><span>#${fmt(it.num)}</span></div>`
+      + `<div class="kv"><span>Оценка</span><span>≈ ⭐ ${fmt(est(it))}</span></div>`;
+    if (it.sale) h += `<div class="kv"><span>На маркете</span><span>⭐ ${fmt(it.sale.price)}</span></div>`;
+    if (it.orig){
+      h += `<div class="kv"><span>Отправитель</span><span>${esc(nameOf(it.orig.from))}</span></div>`
+        + `<div class="kv"><span>Получен</span><span>${dt(it.orig.t)}</span></div>`;
+      if (it.orig.text) h += `<div class="kv"><span>Подпись</span><span>${esc(it.orig.text)}</span></div>`;
+    }
+    return h;
+  }
+  let h = `<div class="kv"><span>Цена</span><span>⭐ ${g.price}</span></div>`
+    + `<div class="kv"><span>Отправитель</span><span>${esc(nameOf(it.from))}</span></div>`
+    + `<div class="kv"><span>Получен</span><span>${dt(it.t)}</span></div>`;
+  if (it.text) h += `<div class="kv"><span>Подпись</span><span>${esc(it.text)}</span></div>`;
+  if (g.ltd) h += `<div class="kv"><span>Лимит</span><span>${fmt(g.supply)} шт.</span></div>`;
+  return h;
+}
 
 /* ---------- Экраны ---------- */
-let tab = 'chats', curChat = null;
-const TITLES = {chats:'Чаты',shop:'Подарки',coll:'Коллекция',prof:'Профиль'};
+let tab='chats', curChat=null, cf='all', mf={gid:'', sort:'price'};
+const TITLES = {chats:'Чаты',shop:'Подарки',market:'Маркет',coll:'Коллекция',prof:'Профиль'};
 function renderBal(){ $('#bal').textContent = '⭐ ' + fmt(S.bal); }
 
 function render(){
   $('#title').textContent = TITLES[tab]; renderBal();
-  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.t === tab));
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.a === tab));
   const m = $('#main');
   if (tab==='chats') m.innerHTML = CONTACTS.map(c => {
-      const last = (S.chats[c.id]||[]).slice(-1)[0];
-      const txt = !last ? 'Нет сообщений' : last.gift ? '🎁 Подарок' : esc(last.text);
-      return `<div class="row glass" data-c="${c.id}"><div class="ava">${c.ava}</div>
-        <div><div class="t">${c.name}</div><div class="s">${txt}</div></div></div>`;
-    }).join('');
-  if (tab==='shop') m.innerHTML = '<div class="grid">' + GIFTS.map(g => `
-      <div class="gift glass">
-        <div class="tag r-${g.rar}">${RAR[g.rar]}</div>
-        <div class="e">${g.e}</div><div class="n">${g.name}</div>
-        <div class="m">${g.supply ? 'Тираж: '+fmt(g.supply)+' · продано '+fmt(S.sold[g.id]||0) : 'Без лимита'}</div>
-        <button class="btn" data-buy="${g.id}">⭐ ${fmt(g.price)}</button></div>`).join('') + '</div>';
-  if (tab==='coll') {
-    if (!S.owned.length) m.innerHTML = '<div style="text-align:center;color:var(--sub);margin-top:60px">Пока пусто.<br>Купите подарок во вкладке «Подарки».</div>';
-    else m.innerHTML = '<div class="grid">' + S.owned.slice().reverse().map(o => {
-        const g = gift(o.gid);
-        return `<div class="gift glass ${o.nft?'nft':''}" data-o="${o.uid}" style="background:linear-gradient(160deg,${o.bg},rgba(255,255,255,.04))">
-          ${o.nft?'<div class="tag" style="color:var(--acc2)">NFT</div>':''}
-          <div class="e">${g.e}</div><div class="n">${g.name}</div>
-          <div class="m">#${fmt(o.num)}${g.supply?' из '+fmt(g.supply):''} · ${o.model}</div></div>`; }).join('') + '</div>';
+    const last = (S.chats[c.id]||[]).slice(-1)[0];
+    const txt = !last ? 'Нет сообщений' : last.gift ? '🎁 Подарок' : esc(last.text);
+    return `<div class="row glass" data-act="chat" data-a="${c.id}"><div class="ava">${c.ava}</div>
+      <div><div class="t">${c.name}</div><div class="s">${txt}</div></div></div>`;
+  }).join('');
+
+  if (tab==='shop') m.innerHTML = '<div class="grid">' + GIFTS.map(g => {
+    const left = g.ltd ? g.supply - S.world.sold[g.id] : 0, out = g.ltd && left <= 0;
+    return `<div class="gift glass">${g.ltd?'<div class="tag">Лимит</div>':''}${art({kind:'reg',gid:g.id},56)}
+      <div class="n">${g.n}</div><div class="m">${g.ltd ? 'Осталось '+fmt(left)+' из '+fmt(g.supply) : 'Без лимита'}</div>
+      <button class="btn" data-act="gsend" data-a="${g.id}" ${out?'disabled':''}>${out?'Распродан':'⭐ '+g.price}</button></div>`;
+  }).join('') + '</div>';
+
+  if (tab==='market'){
+    let L = allListings().filter(l => !mf.gid || l.it.gid === mf.gid);
+    L.sort((a,b) => mf.sort==='priceD' ? b.price-a.price : mf.sort==='num' ? a.it.num-b.it.num : a.price-b.price);
+    m.innerHTML = `<div class="fr"><select id="mfg"><option value="">Все подарки</option>${GIFTS.map(g=>`<option value="${g.id}" ${mf.gid===g.id?'selected':''}>${g.e} ${g.n}</option>`).join('')}</select>
+      <select id="mfs"><option value="price" ${mf.sort==='price'?'selected':''}>Сначала дешёвые</option><option value="priceD" ${mf.sort==='priceD'?'selected':''}>Сначала дорогие</option><option value="num" ${mf.sort==='num'?'selected':''}>По номеру</option></select></div>`
+      + (L.length ? '<div class="grid">' + L.map(l => { const g=gift(l.it.gid), r=rarest(l.it);
+        return `<div class="gift glass" data-act="mopen" data-a="${l.lid}">${l.mine?'<div class="tag">Ваш</div>':''}${art(l.it,56)}
+          <div class="n">${g.n} #${fmt(l.it.num)}</div><div class="m t-${tier(r.p)}">${r.n} · ${pc(r.p)}</div>
+          <button class="btn ghost" style="pointer-events:none">⭐ ${fmt(l.price)}</button></div>`; }).join('') + '</div>'
+        : '<div class="empty">Лотов нет</div>');
   }
-  if (tab==='prof') {
+
+  if (tab==='coll'){
+    const chips = [['all','Все'],['uniq','Уникальные'],['reg','Обычные']].map(([k,t]) =>
+      `<div class="chip ${cf===k?'on':''}" data-act="cf" data-a="${k}">${t}</div>`).join('');
+    const list = S.owned.filter(o => cf==='all' || o.kind===cf).slice().reverse();
+    m.innerHTML = `<div class="chips">${chips}</div>` + (!list.length
+      ? '<div class="empty">Пока пусто.<br>Отправьте подарок себе (чат «Избранное») или купите на маркете.</div>'
+      : '<div class="grid">' + list.map(o => { const g=gift(o.gid);
+        return `<div class="gift glass" data-act="item" data-a="${o.uid}">
+          ${o.sale?'<div class="tag">Продаётся</div>':''}${art(o,56)}
+          <div class="n">${g.n}${o.kind==='uniq'?' #'+fmt(o.num):''}</div>
+          <div class="m">${o.kind==='uniq' ? (o.sale?'⭐ '+fmt(o.sale.price):'≈ ⭐ '+fmt(est(o))) : (o.prepaid?'Улучшение оплачено':'Можно улучшить')}</div></div>`; }).join('') + '</div>');
+  }
+
+  if (tab==='prof'){
     const name = tgUser ? [tgUser.first_name,tgUser.last_name].filter(Boolean).join(' ') : 'Гость';
-    const worth = S.owned.reduce((a,o)=>a+gift(o.gid).price,0);
+    const worth = S.owned.reduce((a,o) => a + (o.kind==='uniq' ? est(o) : gift(o.gid).price), 0);
     m.innerHTML = `<div class="glass" style="padding:20px;text-align:center"><div class="ava" style="margin:0 auto 10px;width:70px;height:70px;font-size:32px">🙂</div>
       <div style="font-size:18px;font-weight:700">${esc(name)}</div>
       ${tgUser&&tgUser.username?'<div style="color:var(--sub)">@'+esc(tgUser.username)+'</div>':''}</div>
       <div class="glass" style="padding:6px 16px;margin-top:10px">
         <div class="kv"><span>Подарков</span><span>${S.owned.length}</span></div>
-        <div class="kv"><span>NFT</span><span>${S.owned.filter(o=>o.nft).length}</span></div>
-        <div class="kv"><span>Стоимость коллекции</span><span>⭐ ${fmt(worth)}</span></div></div>
-      <button class="btn ghost" style="margin-top:12px" id="topup">+ 1000 ⭐ (тестовое пополнение)</button>
-      <button class="btn ghost" style="margin-top:8px" id="reset">Сбросить данные</button>`;
+        <div class="kv"><span>Уникальных</span><span>${S.owned.filter(o=>o.kind==='uniq').length}</span></div>
+        <div class="kv"><span>Стоимость коллекции</span><span>≈ ⭐ ${fmt(worth)}</span></div></div>
+      <button class="btn ghost" style="margin-top:12px" data-act="topup">+ 500 ⭐ (тестовое пополнение)</button>
+      <button class="btn ghost" style="margin-top:8px" data-act="reset">Сбросить данные</button>`;
   }
 }
 
@@ -200,82 +392,198 @@ function render(){
 function openChat(id){
   curChat = CONTACTS.find(c => c.id == id);
   $('#cava').textContent = curChat.ava; $('#cname').textContent = curChat.name;
+  $('#cstat').textContent = curChat.id===0 ? 'только вы' : 'в сети';
   $('#chat').classList.add('open'); drawMsgs();
-  if (tg) { tg.BackButton.show(); }
+  if (tg) tg.BackButton.show();
 }
 function closeChat(){ $('#chat').classList.remove('open'); curChat = null; if (tg) tg.BackButton.hide(); render(); }
+function giftMsg(m){
+  const d = m.gift, g = gift(d.gid), own = d.uid && S.owned.find(o => o.uid == d.uid);
+  const shown = d.uniq || own || {kind:'reg', gid:d.gid};
+  const who = d.dir==='out' ? 'Вы отправили подарок' : d.dir==='self' ? 'Вы сохранили подарок' : curChat.name + ' отправил(а) вам подарок';
+  const title = shown.kind==='uniq' ? g.n + ' #' + fmt(shown.num) : g.n;
+  let note = d.up ? '<div class="x">Улучшение оплачено</div>' : '';
+  if (d.text) note += `<div class="x">«${esc(d.text)}»</div>`;
+  let btn = '';
+  if (own) btn = `<div class="x" style="color:var(--acc)">${own.kind==='reg' ? 'Открыть · улучшить' : 'Открыть'}</div>`;
+  else if (d.dir !== 'out' && !d.uniq) btn = '<div class="x" style="color:var(--sub)">Подарок конвертирован или продан</div>';
+  return `<div class="gmsg glass" ${own?`data-act="item" data-a="${own.uid}"`:''}>${art(shown,56)}
+    <div style="font-weight:600;margin-top:8px">${title}</div><div class="c">${who}</div>${note}${btn}</div>`;
+}
 function drawMsgs(){
-  const box = $('#msgs'); const list = S.chats[curChat.id] || [];
-  box.innerHTML = list.map(m => {
-    if (m.gift){ const g = gift(m.gift.gid);
-      return `<div class="gmsg glass" style="background:linear-gradient(160deg,${m.gift.bg},rgba(255,255,255,.04))">
-        <div class="e">${g.e}</div><div style="font-weight:600">${g.name} #${fmt(m.gift.num)}</div>
-        <div class="c">${m.me ? 'Вы отправили подарок' : curChat.name+' отправил(а) вам подарок'}</div></div>`; }
-    return `<div class="msg ${m.me?'me':'him'}">${esc(m.text)}<div class="tm">${hm(m.t)}</div></div>`;
-  }).join('');
+  const box = $('#msgs'), list = S.chats[curChat.id] || [];
+  box.innerHTML = list.map(m => m.gift ? giftMsg(m)
+    : `<div class="msg ${m.me?'me':'him'}">${esc(m.text)}<div class="tm">${hm(m.t)}</div></div>`).join('');
   box.scrollTop = box.scrollHeight;
 }
-function send(){
+function sendText(){
   const v = $('#cin').value.trim(); if (!v || !curChat) return;
-  addMsg(curChat.id, {me:true, text:v}); $('#cin').value=''; drawMsgs();
+  addMsg(curChat.id, {me:true, text:v}); save(); $('#cin').value=''; drawMsgs();
   const c = curChat;
-  setTimeout(() => { addMsg(c.id, {text:c.bot[Math.random()*c.bot.length|0]}); if (curChat && curChat.id===c.id) drawMsgs(); }, 900);
-}
-function sendGiftSheet(){
-  $('#sin').innerHTML = '<h3 style="margin-top:0">Отправить подарок</h3>' +
-    (S.owned.length ? '<div class="grid">' + S.owned.map(o => { const g=gift(o.gid);
-      return `<div class="gift glass" data-send="${o.uid}"><div class="e" style="font-size:40px">${g.e}</div><div class="n">${g.name}</div><div class="m">#${fmt(o.num)}</div></div>`;}).join('') + '</div>'
-      : '<div style="color:var(--sub)">В коллекции пусто.</div>') +
-    '<h3>Купить и отправить</h3><div class="grid">' + GIFTS.slice(0,4).map(g =>
-      `<div class="gift glass" data-bsend="${g.id}"><div class="e" style="font-size:40px">${g.e}</div><div class="n">${g.name}</div><div class="m">⭐ ${fmt(g.price)}</div></div>`).join('') + '</div>';
-  $('#sheet').classList.add('open');
-}
-function doSend(item){
-  S.owned = S.owned.filter(o => o.uid !== item.uid);
-  addMsg(curChat.id, {me:true, gift:item}); save();
-  $('#sheet').classList.remove('open'); drawMsgs(); renderBal(); haptic('heavy');
-  const c = curChat;
-  setTimeout(()=>{ addMsg(c.id,{text:'Спасибо за подарок! 😍'}); if(curChat&&curChat.id===c.id) drawMsgs(); }, 1100);
+  if (c.bot.length) setTimeout(() => { addMsg(c.id, {text:rnd(c.bot)}); save(); if (curChat && curChat.id===c.id) drawMsgs(); }, 900);
 }
 
-/* ---------- Карточка подарка из коллекции ---------- */
-function openItem(uid){
-  const o = S.owned.find(x => x.uid == uid); if(!o) return; const g = gift(o.gid);
-  const sell = Math.round(g.price * 0.8);
-  $('#sin').innerHTML = `<div class="big">${g.e}</div>
-    <div style="text-align:center;font-size:18px;font-weight:700">${g.name} #${fmt(o.num)}</div>
-    <div style="text-align:center" class="r-${g.rar}">${RAR[g.rar]}</div>
-    <div style="margin:12px 0">
-      <div class="kv"><span>Модель</span><span>${o.model}</span></div>
-      <div class="kv"><span>Фон</span><span style="color:${o.bg};filter:brightness(2)">${o.bg}</span></div>
-      <div class="kv"><span>Номер</span><span>#${fmt(o.num)}${g.supply?' из '+fmt(g.supply):''}</span></div>
-      <div class="kv"><span>Статус</span><span>${o.nft?'NFT':'Внутри приложения'}</span></div></div>
-    ${o.nft ? '' : `<button class="btn" data-mint="${o.uid}">Превратить в NFT (демо)</button>`}
-    <button class="btn ghost" style="margin-top:8px" data-sell="${o.uid}">Продать за ⭐ ${fmt(sell)}</button>`;
-  $('#sheet').classList.add('open');
+/* ---------- Окна (sheet) ---------- */
+function openSheet(html){ $('#sin').innerHTML = html; $('#sheet').classList.add('open'); }
+function closeSheet(){ $('#sheet').classList.remove('open'); }
+
+function pickSheet(cid){   // выбор подарка из чата
+  openSheet('<h3 style="margin-top:0">Выберите подарок</h3><div class="grid">' + GIFTS.map(g => {
+    const out = g.ltd && S.world.sold[g.id] >= g.supply;
+    return `<div class="gift glass" ${out?'':`data-act="opts" data-a="${cid}" data-b="${g.id}"`}>${art({kind:'reg',gid:g.id},44)}
+      <div class="n">${g.n}</div><div class="m">${out?'Распродан':'⭐ '+g.price}</div></div>`; }).join('') + '</div>');
+}
+function rcptSheet(gid){   // выбор получателя из вкладки «Подарки»
+  const g = gift(gid);
+  openSheet(`<h3 style="margin-top:0">Кому отправить «${g.n}»?</h3>` + CONTACTS.map(c =>
+    `<div class="row glass" data-act="opts" data-a="${c.id}" data-b="${gid}"><div class="ava">${c.ava}</div><div class="t">${c.id===0?'Себе (Избранное)':c.name}</div></div>`).join(''));
+}
+function optsSheet(cid, gid){
+  const g = gift(gid), c = CONTACTS.find(c => c.id == cid);
+  openSheet(`<div style="width:150px;margin:0 auto">${art({kind:'reg',gid},64)}</div>
+    <div class="ttl">${g.n}</div><div class="sub">Получатель: ${cid==0?'вы':esc(c.name)} · ⭐ ${g.price}</div>
+    <input class="inp" id="gtext" maxlength="128" placeholder="Подпись (необязательно)">
+    <label class="chk"><input type="checkbox" id="gup"> <span>Оплатить улучшение до уникального (+⭐${upPrice(g)}). Получатель улучшит подарок бесплатно.</span></label>
+    <label class="chk"><input type="checkbox" id="ghide"> <span>Скрыть моё имя</span></label>
+    <button class="btn" data-act="gsendGo" data-a="${cid}" data-b="${gid}">Отправить</button>`);
+}
+function upgradeSheet(uid){
+  const it = S.owned.find(o => o.uid == uid), g = gift(it.gid), cost = it.prepaid ? 0 : upPrice(g);
+  openSheet(`<div style="width:170px;margin:0 auto" id="uart">${art(it,76)}</div>
+    <div class="ttl">Улучшить «${g.n}»</div>
+    <div class="sub">Подарок станет уникальным: случайные модель, фон и символ, свой номер. Его можно продавать на маркете и передавать.</div>
+    <div class="kv"><span>Вариантов моделей</span><span>${MODELS.length}</span></div>
+    <div class="kv"><span>Вариантов фона</span><span>${BDS.length}</span></div>
+    <div class="kv"><span>Вариантов символа</span><span>${SYMS.length}</span></div>
+    <label class="chk"><input type="checkbox" id="ukeep" checked> <span>Сохранить исходные данные (отправитель, дата, подпись)</span></label>
+    <button class="btn" id="ugo" data-act="upgGo" data-a="${uid}">${cost ? 'Улучшить за ⭐'+cost : 'Улучшить бесплатно'}</button>`);
+}
+function runUpgrade(uid){
+  const it = S.owned.find(o => o.uid == uid); if (!it) return;
+  const cost = it.prepaid ? 0 : upPrice(gift(it.gid));
+  if (S.bal < cost){ toast('Не хватает ⭐'); return; }
+  const keep = $('#ukeep').checked, btn = $('#ugo'); btn.disabled = true; btn.textContent = 'Улучшаем…';
+  const box = $('#uart'); let n = 0;
+  const iv = setInterval(() => {
+    box.innerHTML = art({kind:'uniq', gid:it.gid, model:wpick(MODELS), bd:wpick(BDS), sym:wpick(SYMS)}, 76); haptic('light');
+    if (++n >= 14){
+      clearInterval(iv);
+      if (doUpgrade(uid, keep)){ render(); if (curChat) drawMsgs(); haptic('heavy'); openItem(uid, true); }
+    }
+  }, 90);
+}
+function openItem(uid, isNew){
+  const it = S.owned.find(o => o.uid == uid); if (!it) return; const g = gift(it.gid);
+  let b = '';
+  if (it.kind === 'reg'){
+    const left = CFG.CONVERT_DAYS*864e5 - (Date.now() - it.t);
+    b += `<button class="btn" data-act="upg" data-a="${uid}">${it.prepaid ? 'Улучшить бесплатно' : 'Улучшить за ⭐'+upPrice(g)}</button>`;
+    if (left > 0) b += `<button class="btn ghost" style="margin-top:8px" data-act="conv" data-a="${uid}">Конвертировать в ⭐${Math.floor(g.price*CFG.CONVERT_RATE)} (ещё ${Math.ceil(left/864e5)} дн.)</button>`;
+  } else if (it.sale){
+    b += `<button class="btn ghost" data-act="unlist" data-a="${uid}">Снять с продажи</button>`;
+  } else {
+    b += `<button class="btn" data-act="list" data-a="${uid}">Выставить на маркет</button>`
+      + `<button class="btn ghost" style="margin-top:8px" data-act="xfer" data-a="${uid}">Передать (⭐${CFG.TRANSFER_STARS})</button>`;
+  }
+  openSheet(`<div style="width:220px;margin:0 auto">${art(it,100)}</div>
+    <div class="ttl">${isNew ? '🎉 ' : ''}${g.n}${it.kind==='uniq' ? ' #'+fmt(it.num) : ''}</div>
+    <div class="sub">${it.kind==='uniq' ? (isNew ? 'Новый уникальный подарок' : 'Уникальный подарок') : 'Обычный подарок'}</div>
+    <div style="margin-bottom:12px">${details(it)}</div>${b}`);
+}
+function listSheet(uid){
+  const it = S.owned.find(o => o.uid == uid), e = est(it);
+  openSheet(`<div class="ttl" style="margin-top:0">Выставить на маркет</div>
+    <div class="sub">${gift(it.gid).n} #${fmt(it.num)} · оценка ≈ ⭐ ${fmt(e)}</div>
+    <input class="inp" id="lprice" type="number" min="1" value="${e}">
+    <div class="sub" id="lget" style="margin:8px 0 12px">Вы получите ⭐ ${fmt(Math.floor(e*CFG.SELLER_SHARE))} (комиссия ${Math.round((1-CFG.SELLER_SHARE)*100)}%)</div>
+    <button class="btn" data-act="listGo" data-a="${uid}">Выставить</button>`);
+}
+function xferSheet(uid){
+  openSheet(`<h3 style="margin-top:0">Кому передать? (⭐${CFG.TRANSFER_STARS})</h3>` + CONTACTS.filter(c => c.id).map(c =>
+    `<div class="row glass" data-act="xferGo" data-a="${uid}" data-b="${c.id}"><div class="ava">${c.ava}</div><div class="t">${c.name}</div></div>`).join(''));
+}
+function marketSheet(lid){
+  const l = allListings().find(x => x.lid == lid); if (!l) return; const g = gift(l.it.gid);
+  openSheet(`<div style="width:220px;margin:0 auto">${art(l.it,100)}</div>
+    <div class="ttl">${g.n} #${fmt(l.it.num)}</div><div class="sub">Продавец: ${esc(l.seller)}</div>
+    <div style="margin-bottom:12px">${details(Object.assign({}, l.it, {sale:null, orig:null}))}</div>
+    ${l.mine ? `<button class="btn ghost" data-act="unlist" data-a="${l.it.uid}">Снять с продажи</button>`
+             : `<button class="btn" data-act="mbuy" data-a="${l.lid}">Купить за ⭐ ${fmt(l.price)}</button>`}`);
 }
 
-/* ---------- События ---------- */
+/* ---------- Действия ---------- */
+const ACT = {
+  tab: a => { tab = a; render(); },
+  chat: a => openChat(a),
+  back: () => closeChat(),
+  cgift: () => pickSheet(curChat.id),
+  csend: () => sendText(),
+  gsend: a => rcptSheet(a),
+  opts: (a,b) => optsSheet(+a, b),
+  gsendGo: (a,b) => {
+    const ok = sendGift(+a, b, {text:$('#gtext').value.trim(), up:$('#gup').checked, hide:$('#ghide').checked});
+    if (!ok) return;
+    closeSheet(); renderBal(); render();
+    if (curChat && curChat.id === +a) drawMsgs(); else toast('Подарок отправлен');
+  },
+  item: a => openItem(a),
+  upg: a => upgradeSheet(a),
+  upgGo: a => runUpgrade(a),
+  conv: a => convertGift(a),
+  list: a => listSheet(a),
+  listGo: a => {
+    const it = S.owned.find(o => o.uid == a), p = Math.floor(+$('#lprice').value);
+    if (!(p >= 1)){ toast('Укажите цену'); return; }
+    it.sale = {price:p, t:Date.now(), delay:4000 + Math.random()*8000}; save(); closeSheet(); render(); toast('Выставлено на маркет за ⭐' + fmt(p));
+  },
+  unlist: a => { const it = S.owned.find(o => o.uid == a); if (it){ delete it.sale; save(); } closeSheet(); render(); toast('Снято с продажи'); },
+  xfer: a => xferSheet(a),
+  xferGo: (a,b) => {
+    if (S.bal < CFG.TRANSFER_STARS){ toast('Не хватает ⭐'); return; }
+    const it = S.owned.find(o => o.uid == a); S.bal -= CFG.TRANSFER_STARS; S.owned = S.owned.filter(o => o !== it);
+    addMsg(+b, {me:true, gift:{dir:'out', gid:it.gid, uniq:JSON.parse(JSON.stringify(it)), price:gift(it.gid).price}});
+    const c = CONTACTS.find(c => c.id == b);
+    setTimeout(() => { addMsg(c.id, {text:'Вау, спасибо! 🤩'}); save(); if (curChat && curChat.id===c.id) drawMsgs(); }, 1000);
+    save(); closeSheet(); render(); toast('Передано: ' + c.name);
+  },
+  mopen: a => marketSheet(a),
+  mbuy: a => {
+    const i = S.market.findIndex(l => l.lid == a); if (i < 0) return; const l = S.market[i];
+    if (S.bal < l.price){ toast('Не хватает ⭐'); return; }
+    S.bal -= l.price; S.market.splice(i,1); S.market.push(newListing());
+    const it = addOwned(Object.assign({}, l.it, {t:Date.now(), orig:null}));
+    save(); closeSheet(); render(); haptic('medium'); toast('Куплено: ' + gift(it.gid).n + ' #' + fmt(it.num));
+  },
+  cf: a => { cf = a; render(); },
+  topup: () => { S.bal += 500; save(); render(); },
+  reset: () => { if (confirm('Удалить все данные?')){ try{ localStorage.removeItem(KEY); }catch(e){} location.reload(); } },
+};
 document.addEventListener('click', e => {
-  const t = e.target.closest('*'); if (!t) return;
-  const nb = e.target.closest('nav button'); if (nb){ tab = nb.dataset.t; render(); return; }
-  const c = e.target.closest('[data-c]'); if (c){ openChat(c.dataset.c); return; }
-  const b = e.target.closest('[data-buy]'); if (b){ const it = buy(b.dataset.buy); if(it){ toast('Куплено: '+gift(it.gid).name+' #'+it.num); render(); } return; }
-  const o = e.target.closest('[data-o]'); if (o){ openItem(o.dataset.o); return; }
-  const s = e.target.closest('[data-send]'); if (s){ doSend(S.owned.find(x=>x.uid==s.dataset.send)); return; }
-  const bs = e.target.closest('[data-bsend]'); if (bs){ const it = buy(bs.dataset.bsend); if(it) doSend(it); return; }
-  const mi = e.target.closest('[data-mint]'); if (mi){ const it = S.owned.find(x=>x.uid==mi.dataset.mint); it.nft = true; save(); toast('Подарок отмечен как NFT (демо)'); $('#sheet').classList.remove('open'); render(); return; }
-  const se = e.target.closest('[data-sell]'); if (se){ const it = S.owned.find(x=>x.uid==se.dataset.sell); S.bal += Math.round(gift(it.gid).price*0.8); S.owned = S.owned.filter(x=>x!==it); save(); $('#sheet').classList.remove('open'); toast('Продано'); render(); return; }
-  if (e.target.id === 'sheet') $('#sheet').classList.remove('open');
-  if (e.target.id === 'topup'){ S.bal += 1000; save(); render(); }
-  if (e.target.id === 'reset'){ if (confirm('Удалить все данные?')){ localStorage.removeItem(KEY); location.reload(); } }
+  if (e.target.id === 'sheet'){ closeSheet(); return; }
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const f = ACT[el.dataset.act]; if (f) f(el.dataset.a, el.dataset.b);
 });
-$('#cback').onclick = closeChat;
-$('#csend').onclick = send;
-$('#cin').addEventListener('keydown', e => { if (e.key==='Enter') send(); });
-$('#cgift').onclick = sendGiftSheet;
-if (tg) tg.BackButton.onClick(closeChat);
+document.addEventListener('change', e => {
+  if (e.target.id === 'mfg'){ mf.gid = e.target.value; render(); }
+  if (e.target.id === 'mfs'){ mf.sort = e.target.value; render(); }
+});
+document.addEventListener('input', e => {
+  if (e.target.id === 'lprice'){ const p = Math.floor(+e.target.value) || 0;
+    $('#lget').textContent = 'Вы получите ⭐ ' + fmt(Math.floor(p*CFG.SELLER_SHARE)) + ' (комиссия ' + Math.round((1-CFG.SELLER_SHARE)*100) + '%)'; }
+});
+$('#cin').addEventListener('keydown', e => { if (e.key==='Enter') sendText(); });
+if (tg) tg.BackButton.onClick(() => { if ($('#sheet').classList.contains('open')) closeSheet(); else closeChat(); });
 
+/* ---------- Старт: приветственные подарки ---------- */
+if (!S.welcome){
+  S.welcome = true;
+  const a = newReg('bear', {id:4}, 'Добро пожаловать! Улучшение уже оплачено.', true);
+  addMsg(4, {text:'Добро пожаловать в Giftgram! Дарю вам два подарка. Первый можно улучшить бесплатно.'});
+  addMsg(4, {gift:{dir:'in', uid:a.uid, gid:'bear', price:15, up:true, text:'Добро пожаловать! Улучшение уже оплачено.'}});
+  const b = newReg('rose', {id:4}, '', false);
+  addMsg(4, {gift:{dir:'in', uid:b.uid, gid:'rose', price:25, text:''}});
+  save();
+}
 render();
 </script>
 </body>
